@@ -1,0 +1,129 @@
+# =============================================================
+# Prisma-Vite-Workers
+# Top-level = local dev (miniflare emulation, placeholder IDs OK)
+# [env.staging] / [env.production] = real deployments
+# Replace <REPLACE_ME> IDs with the output of:
+#   wrangler kv namespace create KV
+#   wrangler d1 create prisma-vite-workers
+#   wrangler r2 bucket create prisma-vite-workers
+# =============================================================
+
+name = "prisma-vite-workers"
+main = "src/server/index.ts"
+compatibility_date = "2026-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+[assets]
+directory = "dist/client"
+not_found_handling = "single-page-application"
+binding = "ASSETS"
+run_worker_first = ["/api/*", "/docs", "/openapi.json"]
+
+[[kv_namespaces]]
+binding = "KV"
+id = "00000000000000000000000000000000"
+
+[[r2_buckets]]
+binding = "BUCKET"
+bucket_name = "prisma-vite-workers"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "prisma-vite-workers"
+database_id = "00000000-0000-0000-0000-000000000000"
+migrations_dir = "prisma/migrations"
+
+[[durable_objects.bindings]]
+name = "COUNTER"
+class_name = "Counter"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["Counter"]
+
+[observability]
+enabled = true
+head_sampling_rate = 1
+
+[dev]
+port = 8787
+ip = "0.0.0.0"
+local_protocol = "http"
+
+# ----------------------------------------------------------------
+# Staging
+# ----------------------------------------------------------------
+[env.staging]
+name = "prisma-vite-workers-staging"
+workers_dev = true
+
+[env.staging.assets]
+directory = "dist/client"
+not_found_handling = "single-page-application"
+binding = "ASSETS"
+run_worker_first = ["/api/*", "/docs", "/openapi.json"]
+
+[[env.staging.kv_namespaces]]
+binding = "KV"
+id = "<REPLACE_ME>"
+
+[[env.staging.r2_buckets]]
+binding = "BUCKET"
+bucket_name = "prisma-vite-workers-staging"
+
+[[env.staging.d1_databases]]
+binding = "DB"
+database_name = "prisma-vite-workers-staging"
+database_id = "<REPLACE_ME>"
+migrations_dir = "prisma/migrations"
+
+[[env.staging.durable_objects.bindings]]
+name = "COUNTER"
+class_name = "Counter"
+
+[[env.staging.migrations]]
+tag = "v1"
+new_sqlite_classes = ["Counter"]
+
+[env.staging.observability]
+enabled = true
+head_sampling_rate = 1
+
+# ----------------------------------------------------------------
+# Production
+# ----------------------------------------------------------------
+[env.production]
+name = "prisma-vite-workers"
+workers_dev = false
+
+[env.production.assets]
+directory = "dist/client"
+not_found_handling = "single-page-application"
+binding = "ASSETS"
+run_worker_first = ["/api/*", "/docs", "/openapi.json"]
+
+[[env.production.kv_namespaces]]
+binding = "KV"
+id = "<REPLACE_ME>"
+
+[[env.production.r2_buckets]]
+binding = "BUCKET"
+bucket_name = "prisma-vite-workers"
+
+[[env.production.d1_databases]]
+binding = "DB"
+database_name = "prisma-vite-workers"
+database_id = "<REPLACE_ME>"
+migrations_dir = "prisma/migrations"
+
+[[env.production.durable_objects.bindings]]
+name = "COUNTER"
+class_name = "Counter"
+
+[[env.production.migrations]]
+tag = "v1"
+new_sqlite_classes = ["Counter"]
+
+[env.production.observability]
+enabled = true
+head_sampling_rate = 1

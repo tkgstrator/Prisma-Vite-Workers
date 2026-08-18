@@ -1,0 +1,64 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.4.16/schema.json",
+  "plugins": [
+    "./biome-plugins/no-bare-z-string.grit",
+    "./biome-plugins/no-let.grit",
+    "./biome-plugins/no-new-date.grit",
+    "./biome-plugins/no-nullish-coalescing.grit",
+    "./biome-plugins/no-or-fallback.grit",
+    "./biome-plugins/no-tri-state-z-array.grit",
+    "./biome-plugins/no-tri-state-z-boolean.grit",
+    "./biome-plugins/no-type-assertion.grit",
+    "./biome-plugins/no-while-loop.grit",
+    "./biome-plugins/prefer-z-nonempty.grit",
+    "./biome-plugins/prefer-z-safe-parse.grit",
+    "./biome-plugins/prefer-z-url.grit",
+    "./biome-plugins/prefer-z-uuid.grit"
+  ],
+  "assist": { "actions": { "source": { "organizeImports": "on" } } },
+  "files": {
+    "includes": [
+      "src/**/*.{ts,tsx}",
+      "!**/node_modules",
+      "!src/app/routeTree.gen.ts",
+      "!src/generated"
+    ]
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true
+    }
+  },
+  "formatter": {
+    "enabled": true,
+    "formatWithErrors": false,
+    "includes": ["**"],
+    "attributePosition": "auto",
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineEnding": "lf",
+    "lineWidth": 80
+  },
+  "javascript": {
+    "formatter": {
+      "enabled": true,
+      "arrowParentheses": "always",
+      "bracketSameLine": false,
+      "bracketSpacing": true,
+      "jsxQuoteStyle": "single",
+      "quoteStyle": "single",
+      "quoteProperties": "asNeeded",
+      "semicolons": "asNeeded",
+      "indentStyle": "space",
+      "indentWidth": 2,
+      "lineWidth": 120,
+      "trailingCommas": "none"
+    }
+  },
+  "json": {
+    "formatter": {
+      "trailingCommas": "none"
+    }
+  }
+}
