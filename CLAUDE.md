@@ -31,9 +31,9 @@ KV / R2 / D1 / Durable Objects を単一 Worker で使い、ローカルは `vit
 
 ## アーキテクチャ
 
-- `src/server/index.ts` - Worker エントリ (OpenAPIHono)。**Durable Object クラスはここから re-export する** (wrangler が検出するため)
-- `src/server/routes/` - 機能ごとの OpenAPIHono サブアプリ (`createRoute` + zod スキーマで OpenAPI 定義)
-- `src/server/durable-objects/` - DO クラス (`extends DurableObject<Env>`、SQLite storage、WebSocket Hibernation)
+- `src/api/index.ts` - Worker エントリ (OpenAPIHono)。**Durable Object クラスはここから re-export する** (wrangler が検出するため)
+- `src/api/routes/` - 機能ごとの OpenAPIHono サブアプリ (`createRoute` + zod スキーマで OpenAPI 定義)
+- `src/api/durable-objects/` - DO クラス (`extends DurableObject<Env>`、SQLite storage、WebSocket Hibernation)
 - `src/app/` - React SPA (TanStack Router file-based routing、`src/app/routes/` にページ追加)
 - `src/app/routeTree.gen.ts` - 自動生成 (直接編集禁止、biome/tsc 除外)
 - `src/generated/prisma/` - `prisma generate` 出力 (gitignore 済、直接編集禁止)

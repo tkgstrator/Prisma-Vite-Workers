@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'bun:test'
 import { z } from 'zod'
-import { kvApp } from '../src/server/routes/kv'
+import { kvApp } from '../src/api/routes/kv'
 
 const createMockKv = () => {
   const store = new Map<string, string>()

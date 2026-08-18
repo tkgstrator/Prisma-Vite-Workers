@@ -9,7 +9,7 @@
 # =============================================================
 
 name = "prisma-vite-workers"
-main = "src/server/index.ts"
+main = "src/api/index.ts"
 compatibility_date = "2026-01-01"
 compatibility_flags = ["nodejs_compat"]
 

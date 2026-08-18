@@ -1,11 +1,11 @@
 import { OpenAPIHono } from '@hono/zod-openapi'
 import { apiReference } from '@scalar/hono-api-reference'
-import { counterApp } from '@/server/routes/counter'
-import { kvApp } from '@/server/routes/kv'
-import { r2App } from '@/server/routes/r2'
-import { todoApp } from '@/server/routes/todo'
+import { counterApp } from '@/api/routes/counter'
+import { kvApp } from '@/api/routes/kv'
+import { r2App } from '@/api/routes/r2'
+import { todoApp } from '@/api/routes/todo'
 
-export { Counter } from '@/server/durable-objects/counter'
+export { Counter } from '@/api/durable-objects/counter'
 
 const app = new OpenAPIHono<{ Bindings: Env }>()
 
