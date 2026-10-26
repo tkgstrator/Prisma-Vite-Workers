@@ -40,7 +40,7 @@
     },
     "ghcr.io/dhoeric/features/act:1": {},
     "ghcr.io/devcontainers/features/git:1": {
-      "version": "2.55.0"
+      "version": "2.56.0"
     }
   },
   "postAttachCommand": "/bin/sh .devcontainer/postAttachCommand.sh",
